@@ -14,4 +14,5 @@ public interface UsuarioDAO {
     
     public String contrasenaCorrecta(ArrayList<Cliente> aCliente, ArrayList<Trabajador> aTrabajador, String correo, String contrasena);
     public Cliente buscarClienteDni(ArrayList<Cliente> aCliente, String dni);
+    public Trabajador buscarTrabajadorDni(ArrayList<Trabajador> aTrabajador, String dni);
 }
