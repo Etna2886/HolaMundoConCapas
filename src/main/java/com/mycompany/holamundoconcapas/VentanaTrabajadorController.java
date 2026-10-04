@@ -85,7 +85,7 @@ public class VentanaTrabajadorController implements Initializable {
 
     }
     
-    public void iniciar(Stage stage, VentanaLoginController controller, ArrayList<Trabajador> trabajadores, String dni) {
+    public void iniciar(Stage stage, VentanaLoginController controller, ArrayList<Trabajador> trabajadores, ArrayList<Cliente> clientes, String dni) {
         System.out.println("com.mycompany.holamundoconcapas.VentanaTrabajadorController.iniciar()");
     }
 }

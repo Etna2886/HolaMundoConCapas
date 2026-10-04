@@ -97,7 +97,7 @@ public class VentanaLoginController implements Initializable {
                     Stage stage = new Stage(); 
                     Scene scene = new Scene(root); 
                     stage.setScene(scene); // Pasamos los datos al controlador de Cliente 
-                    controller.iniciar(stage, this, aTrabajadores, dniField.getText()); 
+                    controller.iniciar(stage, this, aTrabajadores, aClientes, dniField.getText()); 
                     stage.show(); 
                 } catch (Exception e) {
                     e.printStackTrace();
