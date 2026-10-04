@@ -24,7 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 /**
- * FXML Controller class
+ * Controla el formulario de inicio de sesión y abre la vista según el tipo
+ * de usuario que haya introducido credenciales válidas.
  *
  * @author oihan
  */
@@ -44,14 +45,19 @@ public class VentanaLoginController implements Initializable {
     ArrayList<Cliente> aClientes = fillDataClientes();
     ArrayList<Trabajador> aTrabajadores = fillDataTrabajadores();
     
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Nada
     }    
     
+    /**
+     * Obtiene el DNI y la contraseña escritos en el formulario y los valida
+     * contra los datos de prueba de clientes y trabajadores.
+     *
+     * @return tipo de usuario autenticado o {@code null} si los datos no son
+     * correctos
+     */
     private String loginCorrecto() {
         String user = dniField.getText();
         String pass = contraField.getText();
@@ -59,6 +65,11 @@ public class VentanaLoginController implements Initializable {
         return usuarioDao.contrasenaCorrecta(fillDataClientes(), fillDataTrabajadores(), user, pass);
     }
 
+    /**
+     * Procesa el intento de inicio de sesión. Si las credenciales no son
+     * válidas, actualiza el contador y el mensaje de error; si son válidas,
+     * carga la ventana correspondiente al tipo de usuario.
+     */
     @FXML
     public void validarLogin() {
         String tipo = loginCorrecto();
@@ -107,6 +118,12 @@ public class VentanaLoginController implements Initializable {
         }
     }
     
+    /**
+     * Crea y devuelve una lista de clientes de ejemplo usada para probar el
+     * inicio de sesión y las pantallas de la aplicación.
+     *
+     * @return lista recién creada con los clientes de prueba
+     */
     public ArrayList<Cliente> fillDataClientes() {
 
         // ============================
@@ -139,6 +156,12 @@ public class VentanaLoginController implements Initializable {
         return aClientes;
     }
     
+    /**
+     * Crea y devuelve una lista de trabajadores de ejemplo usada para probar
+     * el inicio de sesión y la pantalla de administración.
+     *
+     * @return lista recién creada con los trabajadores de prueba
+     */
     public ArrayList<Trabajador> fillDataTrabajadores() {
         // ============================
         // TRABAJADORES
@@ -152,6 +175,13 @@ public class VentanaLoginController implements Initializable {
         return aTrabajadores;
     }
     
+    /**
+     * Convierte un mes y un año en el texto de caducidad con formato {@code MMyy}.
+     *
+     * @param mes mes de caducidad, entre 1 y 12
+     * @param anio año completo de caducidad
+     * @return fecha con el mes y los dos últimos dígitos del año
+     */
     private String fecha(int mes, int anio) {
         YearMonth fecha = YearMonth.of(anio, mes);
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MMyy");

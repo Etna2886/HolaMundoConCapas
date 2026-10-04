@@ -16,6 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
 
+/**
+ * Controla la vista del trabajador y muestra los datos de los clientes en una
+ * tabla.
+ */
 public class VentanaTrabajadorController implements Initializable {
 
     // CAMPOS DEL TRABAJADOR
@@ -38,6 +42,7 @@ public class VentanaTrabajadorController implements Initializable {
     // Trabajador logueado
     private Trabajador trabajadorLogueado;
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -51,7 +56,14 @@ public class VentanaTrabajadorController implements Initializable {
     }
 
     /**
-     * Método llamado desde VentanaLoginController
+     * Localiza al trabajador que inició sesión, muestra sus datos personales
+     * y carga la lista de clientes en la tabla.
+     *
+     * @param stage ventana que contiene esta vista
+     * @param controller controlador de la ventana de inicio de sesión
+     * @param trabajadores lista donde se busca al trabajador activo
+     * @param clientes lista de clientes que se mostrará en la tabla
+     * @param dni documento de identidad del trabajador que inició sesión
      */
     public void iniciar(Stage stage, VentanaLoginController controller, ArrayList<Trabajador> trabajadores, ArrayList<Cliente> clientes, String dni) {
 
@@ -69,7 +81,9 @@ public class VentanaTrabajadorController implements Initializable {
     }
 
     /**
-     * Mostrar los datos del trabajador en la vista
+     * Copia a los campos del formulario los datos del trabajador seleccionado.
+     * Si todavía no hay un trabajador asociado al controlador, no modifica
+     * la vista.
      */
     private void mostrarDatosTrabajador() {
         if (trabajadorLogueado == null) return;

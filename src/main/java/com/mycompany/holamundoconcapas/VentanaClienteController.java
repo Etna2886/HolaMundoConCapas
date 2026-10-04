@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * Controla la vista donde un cliente consulta y edita sus datos personales.
  *
  * @author oihan
  */
@@ -49,7 +49,14 @@ public class VentanaClienteController implements Initializable {
     ArrayList<Trabajador> aTrabajadores;
 
     /**
-     * Initializes the controller class.
+     * Guarda las listas de usuarios y carga en los campos los datos del cliente
+     * de prueba identificado por el DNI utilizado actualmente en esta vista.
+     *
+     * @param stage ventana que contiene esta vista
+     * @param controller controlador de la ventana de inicio de sesión
+     * @param trabajadores lista de trabajadores disponible en la aplicación
+     * @param clientes lista de clientes que se mostrará y podrá actualizarse
+     * @param dni DNI asociado al inicio de sesión que abrió la vista
      */
     public void iniciar(Stage stage, VentanaLoginController controller,  ArrayList<Trabajador> trabajadores, ArrayList<Cliente> clientes, String dni) {
         aClientes = clientes;
@@ -66,6 +73,12 @@ public class VentanaClienteController implements Initializable {
         cadField.setText(String.valueOf(c.getCaducidadTarjeta()));
     }
     
+    /**
+     * Valida los datos editables del formulario y, si son válidos, sustituye
+     * en la lista al cliente cuyo DNI aparece en el formulario. Comprueba el
+     * formato del correo, que no pertenezca a otra persona, el teléfono y la
+     * fecha de caducidad de la tarjeta antes de guardar los cambios.
+     */
     public void editarCampos() {
         boolean ok = true;
         boolean encontrado = false;
@@ -109,6 +122,7 @@ public class VentanaClienteController implements Initializable {
             }
         }  
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

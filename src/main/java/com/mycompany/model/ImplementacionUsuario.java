@@ -7,11 +7,23 @@ package com.mycompany.model;
 import java.util.ArrayList;
 
 /**
+ * Implementa las búsquedas y comprobaciones de usuarios definidas por
+ * {@link UsuarioDAO}.
  *
  * @author oihan
  */
 public class ImplementacionUsuario implements UsuarioDAO{
     
+    /**
+     * Busca al usuario por DNI y compara su contraseña con la recibida.
+     *
+     * @param aCliente lista de clientes donde buscar primero
+     * @param aTrabajador lista de trabajadores donde buscar si no es cliente
+     * @param dni documento de identidad del usuario
+     * @param contrasena contraseña que se quiere validar
+     * @return tipo de usuario ({@code "Cliente"} o {@code "Trabajador"}) si la
+     * contraseña coincide; {@code null} si no existe o no es correcta
+     */
     public String contrasenaCorrecta(ArrayList<Cliente> aCliente, ArrayList<Trabajador> aTrabajador, String dni, String contrasena) {
         
         Cliente c = buscarClienteDni(aCliente, dni);
@@ -41,6 +53,13 @@ public class ImplementacionUsuario implements UsuarioDAO{
         return null;
     }
     
+    /**
+     * Busca en la lista el primer cliente con la dirección de correo indicada.
+     *
+     * @param aCliente lista de clientes donde realizar la búsqueda
+     * @param correo correo que se quiere localizar
+     * @return cliente encontrado o {@code null} si no hay coincidencia
+     */
     public Cliente buscarCorreo(ArrayList<Cliente> aCliente, String correo) {
         boolean encontrado = false;
         Cliente c = null;
@@ -55,6 +74,13 @@ public class ImplementacionUsuario implements UsuarioDAO{
         return c;
     }
     
+    /**
+     * Busca en la lista el primer cliente cuyo DNI coincida con el indicado.
+     *
+     * @param aCliente lista de clientes donde realizar la búsqueda
+     * @param dni documento de identidad que se quiere localizar
+     * @return cliente encontrado o {@code null} si no hay coincidencia
+     */
     public Cliente buscarClienteDni(ArrayList<Cliente> aCliente, String dni) {
         boolean encontrado = false;
         Cliente c = null;
@@ -69,6 +95,13 @@ public class ImplementacionUsuario implements UsuarioDAO{
         return c;
     }
     
+    /**
+     * Busca en la lista el primer trabajador cuyo DNI coincida con el indicado.
+     *
+     * @param aTrabajador lista de trabajadores donde realizar la búsqueda
+     * @param dni documento de identidad que se quiere localizar
+     * @return trabajador encontrado o {@code null} si no hay coincidencia
+     */
     public Trabajador buscarTrabajadorDni(ArrayList<Trabajador> aTrabajador, String dni) {
         boolean encontrado = false;
         Trabajador t = null;
@@ -83,6 +116,18 @@ public class ImplementacionUsuario implements UsuarioDAO{
         return t;
     }
 
+    /**
+     * Revisa los correos de clientes y trabajadores para evitar duplicados.
+     * La comparación no distingue entre mayúsculas y minúsculas y permite que
+     * el usuario indicado conserve su propio correo.
+     *
+     * @param aClientes lista de clientes que se debe revisar
+     * @param aTrabajadores lista de trabajadores que se debe revisar
+     * @param correo dirección de correo que se quiere comprobar
+     * @param dni DNI del usuario propietario, si ya tiene ese correo
+     * @return {@code true} si no existe otra persona con ese correo;
+     * {@code false} en caso contrario
+     */
     @Override
     public boolean comprobarEmail(ArrayList<Cliente> aClientes, ArrayList<Trabajador> aTrabajadores, String correo, String dni) {
         boolean ok = true;
