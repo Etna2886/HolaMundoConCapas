@@ -4,6 +4,7 @@
  */
 package com.mycompany.holamundoconcapas;
 
+import com.mycompany.model.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -43,25 +44,25 @@ public class VentanaTrabajadorController implements Initializable {
     @FXML
     private PasswordField ibanField;
     @FXML
-    private TableColumn<Usuario, String> colNom;
+    private TableColumn<Cliente, String> colNom;
     @FXML
-    private TableColumn<Usuario, String> colContra;
+    private TableColumn<Cliente, String> colContra;
     @FXML
-    private TableColumn<Usuario, String> colDNI;
+    private TableColumn<Cliente, String> colDNI;
     @FXML
-    private TableColumn<Usuario, String> colEmail;
+    private TableColumn<Cliente, String> colEmail;
     @FXML
-    private TableColumn<Usuario, String> colTelefono;
+    private TableColumn<Cliente, String> colTelefono;
     @FXML
-    private TableColumn<Usuario, String> colDir;
+    private TableColumn<Cliente, String> colDir;
     @FXML
-    private TableColumn<Usuario, String> colTarjeta;
+    private TableColumn<Cliente, String> colTarjeta;
     @FXML
-    private TableColumn<Usuario, String> colCaducidad;
+    private TableColumn<Cliente, String> colCaducidad;
     @FXML
-    private TableView<Usuario> tablaUsuarios;
+    private TableView<Cliente> tablaUsuarios;
     
-    private Controlador controlador;
+    TrabajadorDAO trabajadorDao = new ImplementacionTrabajador();
 
     /**
      * Initializes the controller class.
@@ -77,7 +78,7 @@ public class VentanaTrabajadorController implements Initializable {
         colTarjeta.setCellValueFactory(new PropertyValueFactory<>("numTarjeta"));
         colCaducidad.setCellValueFactory(new PropertyValueFactory<>("caducidad"));
 
-        tablaUsuarios.getItems().addAll(controlador.getAllUsuarios());//este método también debe estar en el controlador creo    }
+        //tablaUsuarios.getItems().addAll(controlador.getAllUsuarios());//este método también debe estar en el controlador creo    }
 
     }
 }
