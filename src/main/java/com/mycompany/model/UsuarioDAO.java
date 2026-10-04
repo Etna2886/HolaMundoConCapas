@@ -12,6 +12,6 @@ import java.util.ArrayList;
  */
 public interface UsuarioDAO {
     
-    public boolean contrasenaCorrecta(ArrayList<Cliente> aCliente, ArrayList<Trabajador> aTrabajador, String correo, String contrasena);
+    public String contrasenaCorrecta(ArrayList<Cliente> aCliente, ArrayList<Trabajador> aTrabajador, String correo, String contrasena);
     public Cliente buscarClienteDni(ArrayList<Cliente> aCliente, String dni);
 }

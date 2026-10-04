@@ -21,6 +21,9 @@ public class Cliente {
     private int numTarjeta;
     private String caducidadTarjeta;
 
+    public Cliente() {
+    }
+
     public Cliente(String nombre, String contrasena, String dni, String correo, int numTelefono, String direccion, int numTarjeta, String caducidadTarjeta) {
         this.nombre = nombre;
         this.contrasena = contrasena;

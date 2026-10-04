@@ -12,21 +12,33 @@ import java.util.ArrayList;
  */
 public class ImplementacionUsuario implements UsuarioDAO{
     
-    public boolean contrasenaCorrecta(ArrayList<Cliente> aCliente, ArrayList<Trabajador> aTrabajador, String dni, String contrasena) {
+    public String contrasenaCorrecta(ArrayList<Cliente> aCliente, ArrayList<Trabajador> aTrabajador, String dni, String contrasena) {
+        
         Cliente c = buscarClienteDni(aCliente, dni);
-        
-        if (c == null) {
-            System.out.println("El correo introducido no existe.");
-            return false;
+        Trabajador t = buscarTrabajadorDni(aTrabajador, dni);
+
+        if (c != null) {
+            if (c.getContrasena().equals(contrasena)) {
+                System.out.println("Contraseña correcta.");
+                return "Cliente";
+            }
+
+            System.out.println("Contraseña incorrecta.");
+            return null;
+        }
+
+        if (t != null) {
+            if (t.getContrasena().equals(contrasena)) {
+                System.out.println("Contraseña correcta.");
+                return "Trabajador";
+            }
+
+            System.out.println("Contraseña incorrecta.");
+            return null;
         }
         
-        if (c.getContrasena().equals(contrasena)) {
-            System.out.println("Contraseña correcta.");
-            return true;
-        }
-        
-        System.out.println("Contraseña incorrecta.");
-        return false;
+        System.out.println("DNI no encontrado.");
+        return null;
     }
     
     public Cliente buscarCorreo(ArrayList<Cliente> aCliente, String correo) {
@@ -55,5 +67,19 @@ public class ImplementacionUsuario implements UsuarioDAO{
         }
         
         return c;
+    }
+    
+    public Trabajador buscarTrabajadorDni(ArrayList<Trabajador> aTrabajador, String dni) {
+        boolean encontrado = false;
+        Trabajador t = null;
+        
+        for (int i=0; i<aTrabajador.size() && !encontrado; i++) {
+            if (aTrabajador.get(i).getDni().equals(dni)) {
+                t = aTrabajador.get(i);
+                encontrado = true;
+            }
+        }
+        
+        return t;
     }
 }

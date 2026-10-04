@@ -6,6 +6,7 @@ package com.mycompany.holamundoconcapas;
 
 import com.mycompany.model.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -17,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -69,6 +71,7 @@ public class VentanaTrabajadorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /*
         colNom.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colContra.setCellValueFactory(new PropertyValueFactory<>("contrasena"));
         colDNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
@@ -77,8 +80,12 @@ public class VentanaTrabajadorController implements Initializable {
         colDir.setCellValueFactory(new PropertyValueFactory<>("direccion"));
         colTarjeta.setCellValueFactory(new PropertyValueFactory<>("numTarjeta"));
         colCaducidad.setCellValueFactory(new PropertyValueFactory<>("caducidad"));
-
+*/
         //tablaUsuarios.getItems().addAll(controlador.getAllUsuarios());//este método también debe estar en el controlador creo    }
 
+    }
+    
+    public void iniciar(Stage stage, VentanaLoginController controller, ArrayList<Trabajador> trabajadores, String dni) {
+        System.out.println("com.mycompany.holamundoconcapas.VentanaTrabajadorController.iniciar()");
     }
 }

@@ -41,6 +41,8 @@ public class VentanaLoginController implements Initializable {
     
     private int intentos = 3;
     UsuarioDAO usuarioDao = new ImplementacionUsuario();
+    ArrayList<Cliente> aClientes = fillDataClientes();
+    ArrayList<Trabajador> aTrabajadores = fillDataTrabajadores();
     
     /**
      * Initializes the controller class.
@@ -50,16 +52,18 @@ public class VentanaLoginController implements Initializable {
         // Nada
     }    
     
-    private boolean loginCorrecto() {
+    private String loginCorrecto() {
         String user = dniField.getText();
         String pass = contraField.getText();
 
-        return usuarioDao.contrasenaCorrecta(fillData(), user, pass);
+        return usuarioDao.contrasenaCorrecta(fillDataClientes(), fillDataTrabajadores(), user, pass);
     }
 
     @FXML
     public void validarLogin() {
-        if (!loginCorrecto()) {
+        String tipo = loginCorrecto();
+        
+        if (tipo == null) {
             intentos--;
 
             errorLbl.setText("Te quedan " + intentos + " intentos.");
@@ -71,22 +75,33 @@ public class VentanaLoginController implements Initializable {
                 
             }
         }else{
-            for () {
-                
-            }
-            
-            
-            try { 
-                FXMLLoader loader = new FXMLLoader( getClass().getResource("/com/mycompany/holamundoconcapas/ventanaCliente.fxml") ); 
-                Parent root = loader.load();
-                VentanaClienteController controller = loader.getController(); // Buscar el cliente que acaba de iniciar sesión 
-                Stage stage = new Stage(); 
-                Scene scene = new Scene(root); 
-                stage.setScene(scene); // Pasamos los datos al controlador de Cliente 
-                controller.iniciar(stage, this, fillData(), dniField.getText()); 
-                stage.show(); 
-            } catch (Exception e) {
-                e.printStackTrace();
+            System.out.println(tipo);
+            if (tipo.equals("Cliente")) {
+                try { 
+                    FXMLLoader loader = new FXMLLoader( getClass().getResource("/com/mycompany/holamundoconcapas/ventanaCliente.fxml") ); 
+                    Parent root = loader.load();
+                    VentanaClienteController controller = loader.getController(); // Buscar el cliente que acaba de iniciar sesión 
+                    Stage stage = new Stage(); 
+                    Scene scene = new Scene(root); 
+                    stage.setScene(scene); // Pasamos los datos al controlador de Cliente 
+                    controller.iniciar(stage, this, aClientes, dniField.getText()); 
+                    stage.show(); 
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try { 
+                    FXMLLoader loader = new FXMLLoader( getClass().getResource("/com/mycompany/holamundoconcapas/ventanaTrabajador.fxml") ); 
+                    Parent root = loader.load();
+                    VentanaTrabajadorController controller = loader.getController(); // Buscar el cliente que acaba de iniciar sesión 
+                    Stage stage = new Stage(); 
+                    Scene scene = new Scene(root); 
+                    stage.setScene(scene); // Pasamos los datos al controlador de Cliente 
+                    controller.iniciar(stage, this, aTrabajadores, dniField.getText()); 
+                    stage.show(); 
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

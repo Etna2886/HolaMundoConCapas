@@ -52,7 +52,7 @@ public class VentanaClienteController implements Initializable {
      */
     public void iniciar(Stage stage, VentanaLoginController controller, ArrayList<Cliente> clientes, String dni) {
         aClientes = clientes;
-        Cliente c = usuarioDao.buscarDni(aClientes, "12345678A");
+        Cliente c = usuarioDao.buscarClienteDni(aClientes, "12345678A");
         
         nomField.setText(c.getNombre());
         contraField.setText(c.getContrasena());
@@ -73,7 +73,7 @@ public class VentanaClienteController implements Initializable {
             ok = false;
         } else {
             for (int i=0; i<aClientes.size() && !encontrado; i++) {
-                if (aClientes.get(i).getCorreo().equalsIgnoreCase(emailField.getText())) {
+                if (aClientes.get(i).getCorreo().equalsIgnoreCase(emailField.getText()) && !aClientes.get(i).getDni().equals(dniField.getText())) {
                     ok = false;
                     System.out.println("Correo ya existente.");
                 }
@@ -91,11 +91,13 @@ public class VentanaClienteController implements Initializable {
         }
         
         if (ok) {
-            Cliente c = usuarioDao.buscarDni(aClientes, dniField.getText());
+            //Cliente c = usuarioDao.buscarClienteDni(aClientes, dniField.getText());
 
             for (int i=0; i<aClientes.size() && !encontrado; i++) {
                 if (aClientes.get(i).getDni().equalsIgnoreCase(dniField.getText())) {
+                    Cliente c = new Cliente();
                     c.setNombre(nomField.getText());
+                    c.setDni(aClientes.get(i).getDni());
                     c.setContrasena(contraField.getText());
                     c.setCorreo(emailField.getText());
                     c.setNumTelefono(Integer.parseInt(telField.getText()));
@@ -108,7 +110,7 @@ public class VentanaClienteController implements Initializable {
 
                     System.out.println("Campos editados correctamente.");
                 }
-            } 
+            }
         }  
     }
 
