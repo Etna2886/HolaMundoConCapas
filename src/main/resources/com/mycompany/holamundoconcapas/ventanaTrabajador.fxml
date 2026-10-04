@@ -20,22 +20,22 @@
 
       <!-- CAMPOS DEL TRABAJADOR -->
       <Label layoutX="55.0" layoutY="70.0" text="Nombre:" />
-      <TextField fx:id="nomField" layoutX="190.0" layoutY="68.0" prefWidth="251.0" />
+      <TextField fx:id="nomField" disable="true" layoutX="190.0" layoutY="68.0" prefWidth="251.0" />
 
       <Label layoutX="55.0" layoutY="105.0" text="Contraseña:" />
-      <PasswordField fx:id="contraField" layoutX="190.0" layoutY="103.0" prefWidth="251.0" />
+      <PasswordField fx:id="contraField" disable="true" layoutX="190.0" layoutY="103.0" prefWidth="251.0" />
 
       <Label layoutX="55.0" layoutY="140.0" text="DNI:" />
-      <TextField fx:id="dniField" layoutX="190.0" layoutY="138.0" prefWidth="251.0" />
+      <TextField fx:id="dniField" disable="true" layoutX="190.0" layoutY="138.0" prefWidth="251.0" />
 
       <Label layoutX="55.0" layoutY="175.0" text="Email:" />
-      <TextField fx:id="emailField" layoutX="190.0" layoutY="173.0" prefWidth="251.0" />
+      <TextField fx:id="emailField" disable="true" layoutX="190.0" layoutY="173.0" prefWidth="251.0" />
 
       <Label layoutX="55.0" layoutY="210.0" text="Teléfono:" />
-      <TextField fx:id="telField" layoutX="190.0" layoutY="208.0" prefWidth="251.0" />
+      <TextField fx:id="telField" disable="true" layoutX="190.0" layoutY="208.0" prefWidth="251.0" />
 
       <Label layoutX="55.0" layoutY="245.0" text="Dirección:" />
-      <TextField fx:id="dirField" layoutX="190.0" layoutY="243.0" prefWidth="251.0" />
+      <TextField fx:id="dirField" disable="true" layoutX="190.0" layoutY="243.0" prefWidth="251.0" />
 
       <!-- TABLA DE CLIENTES -->
       <Label layoutX="35.0" layoutY="276.0" text="Clientes registrados">
@@ -52,6 +52,8 @@
             <TableColumn fx:id="colEmail" prefWidth="150" text="Email" />
             <TableColumn fx:id="colTelefono" prefWidth="120" text="Teléfono" />
             <TableColumn fx:id="colDir" prefWidth="150" text="Dirección" />
+            <TableColumn fx:id="colTarjeta" prefWidth="120" text="Número Tarjeta" />
+            <TableColumn fx:id="colCaducidad" prefWidth="120" text="Caducidad" />
          </columns>
       </TableView>
       <Label layoutX="53.0" layoutY="274.0" />
