@@ -52,8 +52,6 @@
             <TableColumn fx:id="colEmail" prefWidth="150" text="Email" />
             <TableColumn fx:id="colTelefono" prefWidth="120" text="Teléfono" />
             <TableColumn fx:id="colDir" prefWidth="150" text="Dirección" />
-            <TableColumn fx:id="colTarjeta" prefWidth="120" text="Número Tarjeta" />
-            <TableColumn fx:id="colCaducidad" prefWidth="120" text="Caducidad" />
          </columns>
       </TableView>
       <Label layoutX="53.0" layoutY="274.0" />
