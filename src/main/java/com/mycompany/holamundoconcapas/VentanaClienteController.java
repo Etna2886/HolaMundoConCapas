@@ -67,10 +67,18 @@ public class VentanaClienteController implements Initializable {
     @FXML
     public void editarCampos() {
         boolean ok = true;
+        boolean encontrado = false;
         
-        if (!emailField.getText().matches("[\\w.]+@[\\w-]+\\.[\\w-]{2,4}")) {
+        if (!emailField.getText().matches("[\\w.]+@[\\w-]+\\.[\\w]{2,4}")) {
             System.out.println("Email no válido.");
             ok = false;
+        } else {
+            for (int i=0; i<aClientes.size() && !encontrado; i++) {
+                if (aClientes.get(i).getCorreo().equalsIgnoreCase(emailField.getText())) {
+                    ok = false;
+                    System.out.println("Correo ya existente.");
+                }
+            }
         }
         
         if (!telField.getText().matches("\\d{9}")) {
@@ -78,14 +86,13 @@ public class VentanaClienteController implements Initializable {
             ok = false;
         }
         
-        if (!cadField.getText().matches("(0[1-9]|1[0-2])([0-9]{2})")) {
-            System.out.println("Número de teléfono no válido.");
+        if (!cadField.getText().matches("(0[1-9]|1[0-2])([\\d]{2})")) {
+            System.out.println("Fecha de caducidad no válido.");
             ok = false;
         }
         
         if (ok) {
             Cliente c = clienteDao.buscarDni(aClientes, dniField.getText());
-            boolean encontrado = false;
 
             for (int i=0; i<aClientes.size() && !encontrado; i++) {
                 if (aClientes.get(i).getDni().equalsIgnoreCase(dniField.getText())) {
