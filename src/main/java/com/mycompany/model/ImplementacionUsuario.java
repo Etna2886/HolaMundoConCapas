@@ -82,4 +82,28 @@ public class ImplementacionUsuario implements UsuarioDAO{
         
         return t;
     }
+
+    @Override
+    public boolean comprobarEmail(ArrayList<Cliente> aClientes, ArrayList<Trabajador> aTrabajadores, String correo, String dni) {
+        boolean ok = true;
+        
+        for (int i=0; i<aClientes.size() && ok; i++) {
+            if (aClientes.get(i).getCorreo().equalsIgnoreCase(correo)) {
+                if (!aClientes.get(i).getDni().equalsIgnoreCase(dni)) {
+                    ok = false;
+                    System.out.println("Correo ya existente.");
+                }
+            }
+        }
+        
+        for (int i=0; i<aTrabajadores.size() && ok; i++) {
+            if (aTrabajadores.get(i).getCorreo().equalsIgnoreCase(correo)) {
+                if (!aTrabajadores.get(i).getDni().equalsIgnoreCase(dni)) {
+                    ok = false;
+                    System.out.println("Correo ya existente.");
+                }
+            }
+        }
+        return ok;
+    }
 }

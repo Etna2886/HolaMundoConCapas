@@ -46,12 +46,14 @@ public class VentanaClienteController implements Initializable {
     private PasswordField cadField;
     
     ArrayList<Cliente> aClientes;
+    ArrayList<Trabajador> aTrabajadores;
 
     /**
      * Initializes the controller class.
      */
-    public void iniciar(Stage stage, VentanaLoginController controller, ArrayList<Cliente> clientes, String dni) {
+    public void iniciar(Stage stage, VentanaLoginController controller,  ArrayList<Trabajador> trabajadores, ArrayList<Cliente> clientes, String dni) {
         aClientes = clientes;
+        aTrabajadores = trabajadores;
         Cliente c = usuarioDao.buscarClienteDni(aClientes, "12345678A");
         
         nomField.setText(c.getNombre());
@@ -68,16 +70,11 @@ public class VentanaClienteController implements Initializable {
         boolean ok = true;
         boolean encontrado = false;
         
-        if (!emailField.getText().matches("[\\w.]+@[\\w-]+\\.[\\w]{2,4}")) {
+        if (!emailField.getText().matches("^\\w+(?:\\.\\w+)*@[\\w-]+(?:\\.[\\w-]+)*\\.[A-Za-z]{2,4}$")) {
             System.out.println("Email no válido.");
             ok = false;
         } else {
-            for (int i=0; i<aClientes.size() && !encontrado; i++) {
-                if (aClientes.get(i).getCorreo().equalsIgnoreCase(emailField.getText()) && !aClientes.get(i).getDni().equals(dniField.getText())) {
-                    ok = false;
-                    System.out.println("Correo ya existente.");
-                }
-            }
+            ok = usuarioDao.comprobarEmail(aClientes, aTrabajadores, emailField.getText(), dniField.getText());
         }
         
         if (!telField.getText().matches("\\d{9}")) {
@@ -91,8 +88,6 @@ public class VentanaClienteController implements Initializable {
         }
         
         if (ok) {
-            //Cliente c = usuarioDao.buscarClienteDni(aClientes, dniField.getText());
-
             for (int i=0; i<aClientes.size() && !encontrado; i++) {
                 if (aClientes.get(i).getDni().equalsIgnoreCase(dniField.getText())) {
                     Cliente c = new Cliente();
@@ -118,7 +113,4 @@ public class VentanaClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //Nada
     }
-
-    
-    
 }
