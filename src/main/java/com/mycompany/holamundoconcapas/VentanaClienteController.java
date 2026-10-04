@@ -88,6 +88,7 @@ public class VentanaClienteController implements Initializable {
         }
         
         if (ok) {
+            
             for (int i=0; i<aClientes.size() && !encontrado; i++) {
                 if (aClientes.get(i).getDni().equalsIgnoreCase(dniField.getText())) {
                     Cliente c = new Cliente();

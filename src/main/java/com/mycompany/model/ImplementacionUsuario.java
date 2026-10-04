@@ -86,7 +86,6 @@ public class ImplementacionUsuario implements UsuarioDAO{
     @Override
     public boolean comprobarEmail(ArrayList<Cliente> aClientes, ArrayList<Trabajador> aTrabajadores, String correo, String dni) {
         boolean ok = true;
-        
         for (int i=0; i<aClientes.size() && ok; i++) {
             if (aClientes.get(i).getCorreo().equalsIgnoreCase(correo)) {
                 if (!aClientes.get(i).getDni().equalsIgnoreCase(dni)) {

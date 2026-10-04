@@ -90,6 +90,7 @@ public class VentanaLoginController implements Initializable {
                     e.printStackTrace();
                 }
             } else {
+                
                 try { 
                     FXMLLoader loader = new FXMLLoader( getClass().getResource("/com/mycompany/holamundoconcapas/ventanaTrabajador.fxml") ); 
                     Parent root = loader.load();
