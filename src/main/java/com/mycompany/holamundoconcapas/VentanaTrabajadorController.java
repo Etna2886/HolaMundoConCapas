@@ -62,7 +62,7 @@ public class VentanaTrabajadorController implements Initializable {
     @FXML
     private TableView<Cliente> tablaUsuarios;
     
-    TrabajadorDAO trabajadorDao = new ImplementacionTrabajador();
+    UsuarioDAO usuariotDao = new ImplementacionUsuario();
 
     /**
      * Initializes the controller class.
